@@ -1,17 +1,30 @@
 import streamlit as st
-from llama_index.core import VectorStoreIndex, SimpleDirectoryReader, Settings, StorageContext, load_index_from_storage
+from llama_index.core import VectorStoreIndex, Settings, StorageContext, load_index_from_storage
 from llama_index.core.memory import ChatMemoryBuffer
 from llama_index.embeddings.huggingface import HuggingFaceEmbedding
 from llama_index.llms.anthropic import Anthropic
+from github_loader import load_documents_from_github
 from dotenv import load_dotenv
 import os
+import shutil
 
 load_dotenv()
+
 
 # Page config
 st.set_page_config(page_title="Study Assistant", page_icon="📚", layout="centered")
 st.title("📚 Study Assistant")
 st.caption("Ask me anything about your course notes!")
+
+# Sidebar: refresh button
+with st.sidebar:
+    st.header("⚙️ Settings")
+    if st.button("🔄 Refresh notes from GitHub"):
+        if os.path.exists("storage"):
+            shutil.rmtree("storage")
+        st.cache_resource.clear()
+        st.success("Cache cleared — reloading latest notes...")
+        st.rerun()
 
 
 # Load models and index once (cached so it doesn't reload on every message)
@@ -24,7 +37,10 @@ def load_chat_engine():
         storage_context = StorageContext.from_defaults(persist_dir="storage")
         index = load_index_from_storage(storage_context)
     else:
-        documents = SimpleDirectoryReader("data").load_data()
+        documents = load_documents_from_github()
+        if not documents:
+            st.error("No documents found. Check your GITHUB_* settings in .env")
+            st.stop()
         index = VectorStoreIndex.from_documents(documents, chunk_size=512, chunk_overlap=50)
         index.storage_context.persist("storage")
 

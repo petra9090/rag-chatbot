@@ -1,16 +1,20 @@
+# RAG Chatbot — Python 3.13
 # LlamaIndex — core + integrations
 llama-index-core
 llama-index-embeddings-huggingface
 llama-index-llms-anthropic
 
-# Anthropic SDK
+# Anthropic SDK (used directly in evaluate.py)
 anthropic
 
-# Embedding model backend
+# Embedding model backend (required by HuggingFaceEmbedding)
 sentence-transformers
 
-# Streamlit UI
+# Streamlit UI (app.py)
 streamlit
 
 # Environment variable loading
-dotenv
+python-dotenv
+
+# GitHub API crawling (github_loader.py)
+requests

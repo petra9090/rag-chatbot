@@ -1,8 +1,9 @@
-from llama_index.core import VectorStoreIndex, SimpleDirectoryReader, Settings, StorageContext, load_index_from_storage
+from llama_index.core import VectorStoreIndex, Settings, StorageContext, load_index_from_storage
 from llama_index.core.memory import ChatMemoryBuffer
 from llama_index.core.chat_engine import CondensePlusContextChatEngine
 from llama_index.embeddings.huggingface import HuggingFaceEmbedding
 from llama_index.llms.anthropic import Anthropic
+from github_loader import load_documents_from_github
 from dotenv import load_dotenv
 import os
 
@@ -18,8 +19,8 @@ if os.path.exists("storage"):
     storage_context = StorageContext.from_defaults(persist_dir="storage")
     index = load_index_from_storage(storage_context)
 else:
-    print("Building new index...")
-    documents = SimpleDirectoryReader("data").load_data()
+    print("Building new index from GitHub...")
+    documents = load_documents_from_github()
     index = VectorStoreIndex.from_documents(
         documents,
         chunk_size=512,        # smaller chunks = more precise retrieval
