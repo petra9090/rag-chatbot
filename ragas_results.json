@@ -1,0 +1,123 @@
+{
+  "summary": {
+    "faithfulness": 0.9824545202696464,
+    "answer_relevancy": 0.9242857142857143,
+    "context_precision": 0.9388888888888889,
+    "context_recall": 0.9642857142857143
+  },
+  "overall": 0.9519500468390371,
+  "samples": [
+    {
+      "question": "What is the difference between observational and experimental research design?",
+      "answer": "## Observational vs. Experimental Research Design\n\nThe fundamental difference between the two lies in the **level of intervention** by the researcher:\n\n### Observational Research Design\n- Researchers **simply observe and measure variables** without actively intervening\n- Cannot directly prove **causality**, but can only show **correlations or associations**\n- Since group assignment is not random, there is always a risk that results are **distorted by unknown confounding factors**\n\n### Experimental Research Design\n- Variables are **purposefully manipulated** to determine a cause-and-effect relationship\n- Can **prove causality** because confounding factors are controlled through **randomisation**, thereby isolating the effect of the cause\n- Randomized Controlled Trials (RCTs) are considered the **gold standard** for establishing causal relationships\n- Are **suitable for hypothesis testing**\n\n### Key Distinction\nThe critical advantage of experimental designs over observational ones is the use of **randomization**, which:\n- Eliminates selection bias\n- Controls for confounding factors\n- Ensures comparability between groups at the start of the study (baseline data)\n\nIn summary, while observational studies can identify patterns and associations, only experimental designs \u2014 through controlled manipulation and randomization \u2014 can establish true **cause-and-effect relationships**.",
+      "faithfulness": 0.9411764705882353,
+      "answer_relevancy": 1.0,
+      "context_precision": 1.0,
+      "context_recall": 1.0
+    },
+    {
+      "question": "What are the four main dimensions of data quality?",
+      "answer": "Based on the provided information, the four main dimensions of data quality are:\n\n1. **Correctness/Accuracy** \u2013 The data accurately describe the entity in question.\n2. **Completeness** \u2013 No missing records or field values.\n3. **Conformity/Validity** \u2013 Correct types, value ranges, formats, etc.\n4. **Consistency** \u2013 No contradictions between different data sets or tables.\n\nIt is worth noting that while these four dimensions are commonly referenced, most sources agree that data quality has several dimensions but do not necessarily agree on what all of those dimensions are.",
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.85,
+      "context_precision": 1.0,
+      "context_recall": 1.0
+    },
+    {
+      "question": "What is the difference between classical and Bayesian statistics?",
+      "answer": "## Classical vs. Bayesian Statistics\n\nBased on the notes, here is a comparison of the two approaches:\n\n### Classical Statistics\n- Classical statistics is described as **a set of tools for decision making using hypothesis**.\n- It relies on traditional hypothesis testing frameworks.\n\n### Bayesian Statistics\n- Bayesian statistics is a **statistical theory that interprets probability as a degree of belief in an event**, which can be updated as new evidence is obtained.\n- It is built around **Bayes' Theorem**, which allows updating probabilities using prior knowledge, likelihood, and new data:\n$$P(A | B) = \\dfrac{P(B | A) \\cdot P(A)}{P(B)}$$\n- It introduces key concepts such as:\n  - **Prior probability** $P(M)$: Belief before seeing data\n  - **Likelihood** $P(+|M)$: How well the data fits the hypothesis\n  - **Posterior probability** $P(M|+)$: Updated belief after seeing data\n\n### Key Distinction\nThe fundamental difference lies in how **probability is interpreted**:\n- Classical statistics uses probability for **decision-making through hypothesis testing**.\n- Bayesian statistics treats probability as a **degree of belief** that is continuously updated as new evidence becomes available.\n\n> **Important Note:** Bayesian statistics is not the same as Bayes' Theorem itself \u2014 it is a broader statistical framework built upon it.",
+      "faithfulness": 0.9285714285714286,
+      "answer_relevancy": 0.72,
+      "context_precision": 1.0,
+      "context_recall": 1.0
+    },
+    {
+      "question": "What is a p-value and what does a low p-value mean?",
+      "answer": "## P-Value\n\nA p-value is the **probability of observing a sample statistic that is at least as extreme as the observed sample statistic, assuming that the null hypothesis is correct**.\n\nIn other words, it quantifies the probability of observing the value of a test statistic, or a more extreme value, under the null hypothesis.\n\n---\n\n## What Does a Low P-Value Mean?\n\nA **low p-value** indicates that the observed result would be very unlikely if the null hypothesis were true. Specifically:\n\n- If the p-value is **less than the significance level** (e.g., 5%), you **reject the null hypothesis** and conclude that an effect or relationship exists.\n- Low p-values are **coherent with a rejection of the null hypothesis**, which states that there is no effect.\n\n---\n\n## Important Notes\n\n- \u26a0\ufe0f **P-values are NOT an error rate.** You cannot directly calculate an error rate based on a p-value.\n- \u26a0\ufe0f **Large p-values (close to 1)** do not imply that you can *accept* the null hypothesis \u2014 only that there is insufficient evidence to reject it.\n- \u26a0\ufe0f Dichotomising p-values into simply \"significant\" or \"non-significant\" is considered **very bad practice**.",
+      "faithfulness": 0.9230769230769231,
+      "answer_relevancy": 0.95,
+      "context_precision": 0.8055555555555555,
+      "context_recall": 0.5
+    },
+    {
+      "question": "What is the purpose of blinding in experiments and what are the types?",
+      "answer": "## Blinding in Experiments\n\n### Purpose\nBlinding is a technique used to avoid distortions that arise from knowledge about the treatment being administered. It eliminates both **conscious and unconscious influences** on the treatment result, thereby ensuring more reliable and unbiased outcomes.\n\n---\n\n### Types of Blinding\n\nThere are four types of blinding, ranging from no blinding to complete blinding of all parties involved:\n\n1. **Open** \u2013 No blinding is applied at all.\n\n2. **Single-blind** \u2013 Only the **participants** are unaware of their group assignment (e.g., whether they are receiving the real treatment or a placebo).\n\n3. **Double-blind** \u2013 Neither the **participants** nor the **researchers** administering the treatment know the group assignments.\n\n4. **Triple-blind** \u2013 **Participants, researchers, and data analysts** are all unaware of the group assignments, providing the highest level of blinding.\n\n---\n\nEach level of blinding progressively reduces the potential for bias, with triple-blind studies offering the most protection against distortion in experimental results.",
+      "faithfulness": 1.0,
+      "answer_relevancy": 1.0,
+      "context_precision": 1.0,
+      "context_recall": 1.0
+    },
+    {
+      "question": "What is web scraping?",
+      "answer": "Web scraping (also known as web harvesting or web data extraction) is a data scraping technique used for extracting data from websites. It is a form of copying in which specific data is gathered and copied from the web, typically into a central local database or spreadsheet, for later retrieval or analysis.\n\nThere are two main types of websites that can be scraped:\n\n- **Static websites**, which provide the full content at once.\n- **Dynamic websites**, which only provide parts of the content initially and load additional details on request.\n\nWhen scraping websites, there are also **legal considerations** to keep in mind. In Switzerland, for example, two key restrictions apply:\n1. The **New Federal Act on Data Protection (nFADP)**, in effect since September 1st, 2023.\n2. The international convention of only scraping pages permitted by the website owner, as specified in the site's **robots.txt** file.\n\nIt is also important to **never scrape personalized data**.\n\nCommon tools used for web scraping include:\n- **BeautifulSoup** \u2013 a Python library for searching and extracting data from HTML files, useful for static websites.\n- **Selenium** \u2013 an open-source package for automating web browsers, particularly useful for scraping dynamic websites.",
+      "faithfulness": 1.0,
+      "answer_relevancy": 1.0,
+      "context_precision": 1.0,
+      "context_recall": 1.0
+    },
+    {
+      "question": "What is the purpose of virtual environments in Python?",
+      "answer": "Virtual environments in Python serve the purpose of avoiding dependency issues between packages and keeping the development environment clean. By programming applications within a virtual environment, developers can isolate project-specific package installations, preventing conflicts that might arise when different projects require different versions of the same package.\n\nA virtual environment can be created using the following command:\n\n```bash\nPython3 -m venv .venv\n```\n\nIt is considered best practice to name the virtual environment `.venv`, as this hides it in the file system. Once created, the virtual environment must be activated (e.g., on Linux with `. .venv/bin/activate`), and packages can then be installed into it using `python3-pip`.",
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.9,
+      "context_precision": 1.0,
+      "context_recall": 1.0
+    },
+    {
+      "question": "What is R and what is it used for?",
+      "answer": "## What is R?\n\nR is a powerful programming language and software environment that was specifically designed for:\n\n- **Statistical computing**\n- **Data analysis**\n- **High-quality graphical visualization**\n\n## What is R Used For?\n\nR is widely used by **researchers and data scientists** due to several key strengths:\n\n- Its **vast ecosystem of packages** that extend its functionality\n- Its ability to **handle complex data manipulation**\n- Performing **statistical analyses**, which typically follow these steps:\n  1. Importing data\n  2. Preparing data\n  3. Graphical analysis\n  4. Fitting models\n  5. Checking and interpreting results\n  6. Reporting results\n\nBeyond core statistical analysis, R is also used for:\n- **Data manipulation** (e.g., using packages like `dplyr` and `tidyr`)\n- **Data visualization** (e.g., using `ggplot2`)\n- **Building interactive web applications** (via R Shiny)\n- **Creating reproducible reports** (via R Markdown)\n- **Interacting with APIs**\n- **Statistical modeling**, including linear, log-linear, quadratic, and other advanced models\n\nIn summary, R is a comprehensive tool for the entire data analysis workflow, from raw data import to final reporting.",
+      "faithfulness": 1.0,
+      "answer_relevancy": 1.0,
+      "context_precision": 1.0,
+      "context_recall": 1.0
+    },
+    {
+      "question": "When should log-transformations be applied to a time series?",
+      "answer": "Based on the provided information, log-transformations should be applied to a time series in two specific situations:\n\n1. **When the distribution of the time series elements is right-skewed.**\n2. **When a time series could be produced by the product of model outcomes.**\n\nIn such cases, instead of working with the original time series $X_t$, you would consider the log-transformed time series defined as:\n\n$$g_t = \\log(X_t)$$",
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.85,
+      "context_precision": 1.0,
+      "context_recall": 1.0
+    },
+    {
+      "question": "What is a confounder in research design?",
+      "answer": "## Confounder in Research Design\n\nA **confounder** is a factor that has not been investigated but is associated with **both** the independent and dependent variables, causing a **spurious (false) correlation** between them.\n\nIn other words, confounding occurs when an unexamined variable distorts the apparent relationship between the variables being studied, making it seem like there is a direct cause-and-effect relationship when there may not be.\n\n### Example\nA classic example is the relationship between **firefighters and damage**:\n- It might appear that firefighters *cause* more damage\n- However, the **size of the fire** is the confounder \u2014 it is associated with both the number of firefighters deployed *and* the amount of damage caused\n\n### How to Address Confounding\n**Randomization** is a key technique used to deal with confounders. Its aim is to:\n- Eliminate **selection bias** and confounding factors\n- Ensure **comparability between groups** at the start of a study (baseline data)\n\nBy randomly assigning participants to treatment and control groups, the influence of unknown confounding factors is distributed evenly, helping to isolate the true effect of the independent variable.",
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.95,
+      "context_precision": 0.9166666666666666,
+      "context_recall": 1.0
+    },
+    {
+      "question": "What is R-squared and what is it used for in regression?",
+      "answer": "## R-Squared (R\u00b2)\n\nR-squared is a measure that quantifies the **grade of fit** of a regression model \u2014 in other words, how well the model explains the variation in the data.\n\n### Definition\n\nIt is calculated as:\n\n$$R^2 = corr(y, \\hat{y})^2$$\n\nThat is, it is the square of the correlation between the **observed values** ($y$) and the **fitted/predicted values** ($\\hat{y}$).\n\n### Interpretation\n\n- A **high R\u00b2** value indicates that the model describes the data very well.\n- It essentially tells you how much of the variation in the response variable is captured by the model.\n\n### Important Notes\n\n- R\u00b2 **can be used for any regression**, not just simple linear regression.\n- However, R\u00b2 is **not used to formally compare models** against each other.\n\n### How to Compute it in R\n\n```r\nsummary(lm(Sales ~ TV))$r.squared\n```\n\nIn summary, R\u00b2 is a useful descriptive metric for assessing how well your regression model fits the observed data, but it should not be the sole criterion for model comparison or selection.",
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.82,
+      "context_precision": 0.75,
+      "context_recall": 1.0
+    },
+    {
+      "question": "What are Generalised Linear Models and when are they used?",
+      "answer": "## Generalised Linear Models (GLMs)\n\nGeneralised Linear Models are an extension of the standard linear model that allow for the analysis of **non-normal data**. While linear models are well-suited to many situations, they are not appropriate when the response variable represents certain types of data.\n\n### When are GLMs Used?\n\nGLMs are used when the response variable represents:\n\n- **Count data** \u2192 The **Poisson Model** is more adequate\n- **Binary or binomial data** \u2192 The **Binomial Model** is more adequate\n\n### The Core Idea of GLMs\n\nGLMs generalise the linear model in two key ways:\n\n1. **Link function**: A transformation is applied to the response variable to ensure predictions stay within valid ranges. For example:\n   - For count data, the **log link** is used: log(\u0177) = \u03b2\u2080 + \u03b2\u2081\u00b7x\u2081\n   - For binomial data, the **logit link** is used: logit(y) = log(y / (1-y))\n\n2. **Distribution assumption**: Instead of assuming normally distributed errors, GLMs allow the data to follow other distributions (e.g., Poisson or Binomial).\n\n### Why Not Just Use a Linear Model?\n\nUsing a standard linear model on count or binomial data leads to several problems:\n- It can produce **negative fitted values** (e.g., negative number of cigarettes)\n- For binomial data, predictions may fall **outside the [0%, 100%] range**\n- The assumption of **constant variance** is violated, as variability often depends on the mean\n\n### Fitting GLMs in R\n\nGLMs are fitted using the `glm()` function, specifying the appropriate family:\n\n```r\n# Poisson model for count data\nglm(no.cigarettes ~ person, family = \"poisson\", data = d.smokers)\n\n# Binomial model for binary/binomial data\nglm(cbind(dead, alive) ~ conc, family = \"binomial\", data = bliss)\n```\n\n> **Note:** In practice, count and binomial data are virtually always overdispersed, which should be taken into account when modelling.",
+      "faithfulness": 0.9615384615384616,
+      "answer_relevancy": 0.95,
+      "context_precision": 0.9166666666666666,
+      "context_recall": 1.0
+    },
+    {
+      "question": "What is the logit link function and why is it used for binomial data?",
+      "answer": "## The Logit Link Function for Binomial Data\n\n### Definition\n\nThe logit link function is defined as:\n\n$$\n\\text{logit}(y) = \\log\\left(\\dfrac{y}{1-y}\\right) \\quad | \\quad y \\in [0, 1]\n$$\n\nIts inverse allows predictions to be expressed as:\n\n$$\n\\hat{y} = \\text{inverse.logit}(\\hat{\\beta}_0 + \\hat{\\beta}_1 \\cdot x_1)\n$$\n\n---\n\n### Why It Is Used for Binomial Data\n\nThe logit link function is the **default choice** for binary or binomial data, and it addresses several key problems that arise when fitting a standard linear model to such data:\n\n1. **Constraining predictions to [0%, 100%]**: A regular linear model can produce predictions that fall outside the valid probability range. The logit link function ensures that all predictions remain within this range.\n\n2. **Non-normal distribution**: The response variable in binomial data is bounded between 0 and 1, whereas the normal distribution is unbounded, making it an inappropriate assumption.\n\n3. **Non-constant variability**: The variability of observations is not constant across groups, violating the assumptions of a standard linear model.\n\n---\n\n### Key Takeaway\n\nBy applying a link function (like the logit) and assuming a distribution other than the normal, a **Generalized Linear Model (GLM)** can properly handle the peculiarities of binomial and binary data.",
+      "faithfulness": 1.0,
+      "answer_relevancy": 0.95,
+      "context_precision": 1.0,
+      "context_recall": 1.0
+    },
+    {
+      "question": "What are the assumptions of a linear model about the errors?",
+      "answer": "Based on the information provided, the inference on regression coefficients (p-values and confidence intervals) relies on the following assumptions about the errors:\n\n$$\\varepsilon \\stackrel{\\text{iid}}{\\sim} \\mathcal{N}(0, \\sigma^2)$$\n\nSpecifically, this means that:\n\n1. **Normality**: The errors follow a **normal distribution**\n2. **Zero mean**: The errors have an **expected value of zero**\n3. **Homoscedasticity**: The errors have **constant variance** (i.e., the variance does not change across observations)\n4. **Independence**: The errors are **independent** of each other",
+      "faithfulness": 1.0,
+      "answer_relevancy": 1.0,
+      "context_precision": 0.7555555555555555,
+      "context_recall": 1.0
+    }
+  ]
+}

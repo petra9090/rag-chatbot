@@ -2,21 +2,17 @@
 github_loader.py
 ----------------
 Fetches all .qmd / .md / .txt files from a GitHub repository and returns them
-as LlamaIndex Document objects.
+as LlamaIndex Document objects. Files are downloaded in parallel for speed.
 
 Structure assumed:
     hs25/
       cip/
         cip_notes.qmd
-      statistics/
-        stats_notes.qmd
     fs26/
       ...
 
-.qmd files are read as plain Markdown (the content is compatible).
-
 Environment variables (add to .env):
-    GITHUB_TOKEN=your_personal_access_token   # optional for public repos
+    GITHUB_TOKEN=your_personal_access_token
     GITHUB_OWNER=nilsrechberger
     GITHUB_REPO=mscids-notes
     GITHUB_BRANCH=main
@@ -26,6 +22,7 @@ Environment variables (add to .env):
 import os
 import base64
 import requests
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from llama_index.core import Document
 from dotenv import load_dotenv
 
@@ -40,7 +37,7 @@ GITHUB_BRANCH  = os.getenv("GITHUB_BRANCH", "main")
 _folders_env   = os.getenv("GITHUB_FOLDERS", "hs25,fs26")
 GITHUB_FOLDERS = [f.strip() for f in _folders_env.split(",") if f.strip()]
 
-# File types to load — .qmd is Quarto Markdown, readable as plain Markdown
+# File types to load
 EXTENSIONS = [".qmd", ".md", ".txt"]
 
 BASE_URL = "https://api.github.com"
@@ -56,9 +53,7 @@ def _headers() -> dict:
 def _parse_metadata(path: str) -> dict:
     """
     Extract semester, subject and filename from a nested path.
-
-    e.g.  hs25/cip/cip_notes.qmd
-            -> semester=hs25, subject=cip, file_name=cip_notes.qmd
+    e.g. hs25/cip/cip_notes.qmd -> semester=hs25, subject=cip, file_name=cip_notes.qmd
     """
     parts = path.split("/")
     return {
@@ -85,7 +80,7 @@ def _list_files(path: str) -> list[dict]:
         if item["type"] == "file":
             files.append(item)
         elif item["type"] == "dir":
-            files.extend(_list_files(item["path"]))   # recurse
+            files.extend(_list_files(item["path"]))
     return files
 
 
@@ -96,10 +91,19 @@ def _fetch_content(file_info: dict) -> str:
     return base64.b64decode(response.json()["content"]).decode("utf-8")
 
 
+def _fetch_one(file_info: dict) -> Document:
+    """Fetch a single file and return as a LlamaIndex Document."""
+    content  = _fetch_content(file_info)
+    metadata = _parse_metadata(file_info["path"])
+    metadata["source_url"] = file_info["html_url"]
+    metadata["branch"]     = GITHUB_BRANCH
+    return Document(text=content, metadata=metadata)
+
+
 def load_documents_from_github(verbose: bool = True) -> list[Document]:
     """
-    Crawl GITHUB_FOLDERS, fetch all .qmd / .md / .txt files, and return
-    them as LlamaIndex Documents with semester + subject metadata.
+    Crawl GITHUB_FOLDERS, fetch all .qmd / .md / .txt files in parallel,
+    and return them as LlamaIndex Documents with semester + subject metadata.
     """
     if verbose:
         print(f"\nCrawling github.com/{GITHUB_OWNER}/{GITHUB_REPO}  "
@@ -124,29 +128,24 @@ def load_documents_from_github(verbose: bool = True) -> list[Document]:
 
     if len(matched) == 0:
         print("  No files found — double-check:")
-        print(f"    GITHUB_OWNER  = {GITHUB_OWNER}")
-        print(f"    GITHUB_REPO   = {GITHUB_REPO}")
-        print(f"    GITHUB_FOLDERS= {GITHUB_FOLDERS}")
-        print("  Also confirm the folder names match exactly in the repo.\n")
+        print(f"    GITHUB_OWNER   = {GITHUB_OWNER}")
+        print(f"    GITHUB_REPO    = {GITHUB_REPO}")
+        print(f"    GITHUB_FOLDERS = {GITHUB_FOLDERS}")
         return []
 
-    # ── 3. Download and build Documents ──────────────────────────────────────
+    # ── 3. Download files in parallel (faster than sequential) ───────────────
     documents = []
-    for file_info in matched:
-        try:
-            content  = _fetch_content(file_info)
-            metadata = _parse_metadata(file_info["path"])
-            metadata["source_url"] = file_info["html_url"]
-            metadata["branch"]     = GITHUB_BRANCH
-
-            documents.append(Document(text=content, metadata=metadata))
-
-            if verbose:
-                print(f"  OK  [{metadata['semester']}]  "
-                      f"{metadata['subject']} / {metadata['file_name']}")
-
-        except Exception as e:
-            print(f"  SKIP {file_info['path']} — {e}")
+    with ThreadPoolExecutor(max_workers=10) as executor:
+        futures = {executor.submit(_fetch_one, f): f for f in matched}
+        for future in as_completed(futures):
+            try:
+                doc = future.result()
+                documents.append(doc)
+                if verbose:
+                    print(f"  OK  [{doc.metadata['semester']}]  "
+                          f"{doc.metadata['subject']} / {doc.metadata['file_name']}")
+            except Exception as e:
+                print(f"  SKIP {futures[future]['path']} — {e}")
 
     # ── 4. Summary ────────────────────────────────────────────────────────────
     if verbose:

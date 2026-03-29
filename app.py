@@ -30,7 +30,7 @@ with st.sidebar:
 # Load models and index once (cached so it doesn't reload on every message)
 @st.cache_resource
 def load_chat_engine():
-    Settings.embed_model = HuggingFaceEmbedding(model_name="BAAI/bge-small-en-v1.5")
+    Settings.embed_model = HuggingFaceEmbedding(model_name="all-MiniLM-L6-v2")
     Settings.llm = Anthropic(model="claude-sonnet-4-6")
 
     if os.path.exists("storage"):
@@ -71,12 +71,10 @@ for message in st.session_state.messages:
 
 # Chat input
 if prompt := st.chat_input("Ask a question about your notes..."):
-    # Show user message
     st.session_state.messages.append({"role": "user", "content": prompt})
     with st.chat_message("user"):
         st.markdown(prompt)
 
-    # Get and show assistant response
     with st.chat_message("assistant"):
         with st.spinner("Thinking..."):
             response = chat_engine.chat(prompt)
