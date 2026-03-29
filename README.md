@@ -30,7 +30,7 @@ rag-chatbot/
 
 ---
 
-## 🚀 Installation
+## Installation
 
 ### 1. Clone the repository
 
@@ -72,7 +72,7 @@ GITHUB_FOLDERS=hs25,fs26
 
 ---
 
-## How Notes Are Loaded
+## How Notes are loaded
 
 Notes are fetched directly from GitHub at runtime — there is no local `data/` folder.  
 The loader (`github_loader.py`) recursively crawls the folders defined in `GITHUB_FOLDERS` and reads all `.qmd`, `.md`, and `.txt` files.
@@ -94,7 +94,7 @@ Each document is indexed with metadata: **semester**, **subject**, and **filenam
 
 ---
 
-## Running the Application
+## Running the application
 
 ### Streamlit web interface (recommended)
 
@@ -123,7 +123,7 @@ Type your question and press Enter. Type `exit` or `quit` to stop.
 
 ---
 
-## Evaluating Answer Quality
+## Evaluating answer quality
 
 ```bash
 python evaluate.py
