@@ -1,6 +1,5 @@
 # rag-chatbot
 
-An educational study assistant powered by LlamaIndex + Claude.  
 This chatbot lets students ask questions about their course notes using Retrieval-Augmented Generation (RAG). Documents are indexed locally, and Claude answers questions based only on the uploaded material.
 
 ---
