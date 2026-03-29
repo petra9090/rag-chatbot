@@ -1,0 +1,16 @@
+# LlamaIndex — core + integrations
+llama-index-core
+llama-index-embeddings-huggingface
+llama-index-llms-anthropic
+
+# Anthropic SDK
+anthropic
+
+# Embedding model backend
+sentence-transformers
+
+# Streamlit UI
+streamlit
+
+# Environment variable loading
+dotenv
