@@ -26,7 +26,7 @@ rag-chatbot/
 - Python 3.13 or higher
 - An Anthropic API key — [console.anthropic.com](https://console.anthropic.com)
 - A LlamaCloud API key — [cloud.llamaindex.ai](https://cloud.llamaindex.ai)
-- A GitHub Personal Access Token — [github.com/settings/tokens](https://github.com/settings/tokens)
+- A GitHub Personal Access Token — [github.com/settings/tokens](https://github.com/settings/tokens) (Tokens classic → public_repo permission only)
 
 ---
 
